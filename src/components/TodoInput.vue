@@ -1,18 +1,27 @@
 <template>
-  <div class="inputBox shadow">
+  <div class="inputBox">
     <input type="text" placeholder="할 일을 적어보쎄요~" v-model="newTodoItem" @keyup.enter="addTodo"/>
     <span class="addContainer" @click="addTodo">
       <button class="addBtn">+</button>
     </span>
+
+    <AlertModal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">안 내</h3>
+      <h3 slot="body">값을 입력 해주세요</h3>
+    </AlertModal>
+
   </div>
 </template>
 
 <script>
+import AlertModal from './common/AlertModal.vue';
+
 export default {
   name: 'TodoInput',
   data() {
     return {
       newTodoItem: "",
+      showModal: false
     }
   },
   methods: {
@@ -21,12 +30,15 @@ export default {
         this.$emit('addTodoItem', this.newTodoItem)
         this.clearInput();
       } else {
-        alert('할 일을 입력해주세요~')
+        this.showModal = true
       }
     },
     clearInput: function() {
       this.newTodoItem = '';
     }
+  },
+  components: {
+    AlertModal: AlertModal
   }
 }
 </script>

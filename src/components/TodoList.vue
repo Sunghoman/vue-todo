@@ -1,12 +1,12 @@
 <template>
   <div>
-    <ul>
+    <transition-group name="list" tag="ul">
       <li v-for="(todoItem, i) in propsdata" :key="i">
         <button class="checkBtn" @click="toggleComplete(todoItem, i)">V</button>
         <h4 v-bind:class="{textCompleted: todoItem.isComplete}">{{todoItem.item}}</h4>
         <button class="removeBtn" @click="removeTodo(todoItem, i)">X</button>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -90,5 +90,12 @@ export default {
         color: #b3adad;
       }
     }
+  }
+  .list-enter-active, .list-leave-active {
+    transition: all 0.5s linear;
+  }
+  .list-enter, .list-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
   }
 </style>
