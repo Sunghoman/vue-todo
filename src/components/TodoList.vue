@@ -18,12 +18,10 @@ export default {
   },
   methods: {
     removeTodo: function(todoItem, i) {
-      this.$emit('removeItem', todoItem, i)
+      this.$emit('removeItem', todoItem, i);
     },
     toggleComplete: function(todoItem) {
-      todoItem.isComplete = !todoItem.isComplete;
-      localStorage.removeItem(todoItem);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+      this.$emit('toggleItem', todoItem);
     },
   },
 }
