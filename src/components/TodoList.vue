@@ -15,10 +15,16 @@ export default {
   name: 'TodoList',
   methods: {
     removeTodo(todoItem, i) {
-      this.$emit('removeItem', todoItem, i);
+      this.$store.commit('removeOneItem', {
+        todoItem: todoItem,
+        i: i
+      })
     },
-    toggleComplete(todoItem) {
-      this.$emit('toggleItem', todoItem);
+    toggleComplete(todoItem, i) {
+      this.$store.commit('toggleOneItem', {
+        todoItem: todoItem,
+        i: i
+      });
     },
   },
 }
