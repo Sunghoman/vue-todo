@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader/>
     <TodoFooter/>
-    <TodoList v-bind:propsdata="todoItems"/>
+    <TodoList/>
     <TodoInput/>
   </div>
 </template>
@@ -15,11 +15,6 @@
 
   export default {
     name: 'App',
-    data() {
-      return {
-        todoItems: [],
-      }
-    },
     methods: {
       removeAllItems() {
         localStorage.clear();
